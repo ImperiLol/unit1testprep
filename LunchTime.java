@@ -34,6 +34,10 @@ public class LunchTime {
      */
     public LunchTime() {
         // TODO: Initialize all four instance variables.
+        numNugs = 0;
+        mysterySauce = 0.0;
+        enoughNugs = false;
+        entreeName = "Unknown";
     }
 
 
@@ -42,6 +46,10 @@ public class LunchTime {
      */
     public LunchTime(int nugs, double sauce, boolean enough, String name) {
         // TODO: Set all four instance variables using the parameters.
+        numNugs = nugs;
+        mysterySauce = sauce;
+        enoughNugs = enough;
+        entreeName = name;
     }
 
 
@@ -59,7 +67,7 @@ public class LunchTime {
      */
     public int getEntreeNameLength() {
         // TODO
-        return 0;
+        return entreeName.length();
     }
 
 
@@ -79,7 +87,7 @@ public class LunchTime {
      */
     public String getEntreeSubstring(int start, int end) {
         // TODO
-        return "";
+        return entreeName.substring(start, end);
     }
 
 
@@ -95,7 +103,7 @@ public class LunchTime {
      */
     public int containsNug() {
         // TODO
-        return 0;
+        return entreeName.indexOf("Nug");
     }
 
 
@@ -112,7 +120,7 @@ public class LunchTime {
      */
     public int compareLunchNames(String otherLunch) {
         // TODO
-        return 0;
+        return entreeName.compareTo(otherLunch);
     }
 
 
@@ -127,7 +135,7 @@ public class LunchTime {
      */
     public boolean isSameLunch(String otherLunch) {
         // TODO
-        return false;
+        return entreeName.equals(otherLunch);
     }
 
 
@@ -155,7 +163,7 @@ public class LunchTime {
        */
       public int cafeteriaRandomness(int lowNugs, int highNugs) {
           // TODO: return a random integer from lowNugs through highNugs
-          return 0;
+          return (int) (Math.random() * (highNugs - lowNugs + 1)) + lowNugs;
       }
 
 
@@ -169,7 +177,7 @@ public class LunchTime {
      */
     public double nuggetPower(double power) {
         // TODO
-        return 0.0;
+        return Math.pow(numNugs, power);
     }
 
     /**
@@ -179,7 +187,7 @@ public class LunchTime {
      */
     public boolean gotEnoughNugs() {
         // TODO
-        return false;
+        return enoughNugs;
     }
 
 
@@ -216,7 +224,12 @@ public class LunchTime {
      */
     public String secretLunchCode(int codeLength) {
         // TODO
-        return "";
+        String code = "";
+        for (int i = 0; i < codeLength; i++) {
+            char randomChar = (char) ((int) (Math.random() * 26) + 'a');
+            code += randomChar;
+        }
+        return code;
     }
 
 
@@ -249,7 +262,7 @@ public class LunchTime {
      */
     public double sauceCatastrophe(double saucePower, double nugPower) {
         // TODO
-        return 0.0;
+        return Math.abs(Math.pow(mysterySauce, saucePower) - Math.pow(numNugs, nugPower));
     }
 
 
@@ -277,7 +290,7 @@ public class LunchTime {
     public double distanceToNuggets(double studentX, double studentY,
                                     double nugX, double nugY) {
         // TODO
-        return 0.0;
+        return Math.sqrt(Math.pow(nugX - studentX, 2) + Math.pow(nugY - studentY, 2));
     }
 
 
@@ -289,6 +302,7 @@ public class LunchTime {
 
         // TODO:
         // Create a LunchTime object using the no-argument constructor.
+        LunchTime standardLunch = new LunchTime();
 
 
         // TODO:
@@ -297,16 +311,28 @@ public class LunchTime {
         //
         // Feel free to invent an appropriately terrible cafeteria
         // entree name.
+        LunchTime specificLunch = new LunchTime(8, 15.5, true, "Nuggets of Questionable Origin from 100% Hose Meat");
 
 
         // TODO:
         // Call EVERY non-challenge method at least once.
         //
         // Print the results so you can verify that your methods work.
+        System.out.println(specificLunch.getEntreeNameLength());
+        System.out.println(specificLunch.getEntreeSubstring(0, 7));
+        System.out.println(specificLunch.containsNug());
+        System.out.println(specificLunch.compareLunchNames("Real Owl Bites"));
+        System.out.println(specificLunch.isSameLunch("Nuggets of Questionable Origin from 100% Hose Meat"));
+        System.out.println(specificLunch.cafeteriaRandomness(5, 10));
+        System.out.println(specificLunch.nuggetPower(3.0));
+        System.out.println(specificLunch.gotEnoughNugs());
 
 
         // OPTIONAL:
         // Attempt the four challenges if you are feeling powerful.
+        System.out.println(specificLunch.secretLunchCode(5));
+        System.out.println(specificLunch.sauceCatastrophe(2.0, 2.0));
+        System.out.println(specificLunch.distanceToNuggets(0.0, 0.0, 3.0, 4.0));
 
 
         // IMPORTANT:
